@@ -5,11 +5,11 @@ import (
 	"log"
 	"net"
 
-	"github.com/hellokvn/go-grpc-auth-svc/pkg/config"
-	"github.com/hellokvn/go-grpc-auth-svc/pkg/db"
-	"github.com/hellokvn/go-grpc-auth-svc/pkg/pb"
-	"github.com/hellokvn/go-grpc-auth-svc/pkg/services"
-	"github.com/hellokvn/go-grpc-auth-svc/pkg/utils"
+	"github.com/manumura/go-grpc-auth-svc/pkg/config"
+	"github.com/manumura/go-grpc-auth-svc/pkg/db"
+	"github.com/manumura/go-grpc-auth-svc/pkg/pb"
+	"github.com/manumura/go-grpc-auth-svc/pkg/services"
+	"github.com/manumura/go-grpc-auth-svc/pkg/utils"
 	"google.golang.org/grpc"
 )
 
