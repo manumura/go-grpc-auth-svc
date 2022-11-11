@@ -1,0 +1,45 @@
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+
+CREATE DATABASE auth_svc;
+CREATE DATABASE order_svc;
+CREATE DATABASE product_svc;
+
+curl --request POST \
+  --url http://localhost:3000/auth/register \
+  --header 'Content-Type: application/json' \
+  --data '{
+ "email": "elon@musk.com",
+ "password": "1234567"
+}'
+
+curl --request POST \
+  --url http://localhost:3000/auth/login \
+  --header 'Content-Type: application/json' \
+  --data '{
+ "email": "elon@musk.com",
+ "password": "1234567"
+}'
+
+curl --request POST \
+  --url http://localhost:3000/product \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODAxOTE2OTQsImlzcyI6ImdvLWdycGMtYXV0aC1zdmMiLCJJZCI6MiwiRW1haWwiOiJlbG9uQG11c2suY29tIn0.CfMns46bQuhVw_SBrKfRMFQx9MchlDWMxpEPP79wFzU' \
+  --header 'Content-Type: application/json' \
+  --data '{
+ "name": "Product A",
+ "stock": 5,
+ "price": 15
+}'
+
+curl --request GET \
+  --url http://localhost:3000/product/1 \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODAxOTE2OTQsImlzcyI6ImdvLWdycGMtYXV0aC1zdmMiLCJJZCI6MiwiRW1haWwiOiJlbG9uQG11c2suY29tIn0.CfMns46bQuhVw_SBrKfRMFQx9MchlDWMxpEPP79wFzU'
+
+curl --request POST \
+  --url http://localhost:3000/order \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODAxOTE2OTQsImlzcyI6ImdvLWdycGMtYXV0aC1zdmMiLCJJZCI6MiwiRW1haWwiOiJlbG9uQG11c2suY29tIn0.CfMns46bQuhVw_SBrKfRMFQx9MchlDWMxpEPP79wFzU' \
+  --header 'Content-Type: application/json' \
+  --data '{
+ "productId": 1,
+ "quantity": 1
+}'
